@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>repl.it</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<script src="https://aframe.io/releases/1.0.4/aframe.min.js">
+
+	</script>
+	<script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js">
+
+	</script>
+
+</head>
+
+<body>
+	<a-scene>
+		<a-sky src="images/my_sky.jpg" alt=”my background image”>
+		</a-sky>
+		<a-cylinder id="floor" position="0 0 0" radius="7.5" color="green" height="0.1">
+		</a-cylinder>
+		<a-entity id="cameraRig">
+			<a-entity id="head" camera wasd-controls look-controls>
+			</a-entity>
+			<a-entity teleport-controls="cameraRig: #cameraRig; type: parabolic; button: trigger;collisionEntities: #floor" oculus-touch-controls="hand: right">
+			</a-entity>
+			<a-entity laser-controls="hand:left" line="color: red"></a-entity>
+			<a-camera>
+			</a-camera>
+		</a-entity>
+		<a-box id="box1" position="0 1.473 4.907" rotation="0 0 0" scale="10 3 0.2" color="red">
+		</a-box>
+		<a-cylinder id="triangle_front" segments-radial="3" position="0 3.874 4.907" rotation="-90 0 0" scale="5.774 0.2 1.8" color="red">
+		</a-cylinder>
+		<a-box id="box2" position="0 1.473 -4.907" rotation="0 0 0" scale="10 3 0.2" src="images/wall_texture.jpg">
+		</a-box>
+		<a-cylinder id="triangle_back" segments-radial="3" position="0 3.874 -4.907" rotation="-90 0 0" scale="5.774 0.2 1.8" src="images/roof_triangle_texture.jpg">
+		</a-cylinder>
+		<a-box id="box3" position="5.049 1.454 -0.008" rotation="0 -90 0" scale="10 3 0.2" color="brown">
+		</a-box>
+		<a-box id="box4" position="-5.049 1.454 -0.008" rotation="0 -90 0" scale="10 3 0.2" color="purple">
+		</a-box>
+		<a-box id="roof_left" position="-2.507 4.241 -0.071" rotation="28.433 -90 0" scale="10.931 0.20 6.282" color="silver">
+		</a-box>
+		<a-box id="roof_right" position="2.684 4.328 0" rotation="28.433 90 0" scale="10.931 0.20 5.959" color="silver">
+		</a-box>
+		<a-box id="run_frame" src="images/frame.png" scale="2 2 .05" rotation="0 0 0" position="0 1.960 -4.796">
+			<a-plane id="art1" src="images/running.jpg" scale="0.700 .6 .05" rotation="0 0 0" position="0 0 1.545">
+			</a-plane>
+		</a-box>
+		<a-obj-model id="wirebox" src="images/bluebox.obj" mtl="images/bluebox.mtl" position="-0.294 1.240 0.551" rotation="-34.840 -121.949 134.859"
+		 scale=".5 .5 .5">
+		</a-obj-model>
+
+		<!-- Place the mouse cursor in view -->
+		<a-entity cursor="rayOrigin: mouse">
+		</a-entity>
+
+		<a-assets>
+			<!-- Video -->
+			<video id="videoclip" loop="true" src="images/harry_potter.mp4" crossorigin="anonymous" preload="auto">
+			</video>
+			<img id="play" src="images/btnPlay.png" preload="auto"> 
+      <img id="pause" src="images/btnPause.png" preload="auto"> 
+      <img id="tv_background" src="images/tv_background.jpg" preload="auto">     
+    </a-assets>
+
+  <a-entity> <!-- video on wall -->
+      <a-video src="#videoclip" position="-3.893 1.6 0" rotation="0 90 0" width="2" height="1.125" > 
+      </a-video>
+      
+      <a-plane
+        id="videoControls" position="-3.893 0.854 0" scale="2 0.386 1.714" rotation="0 90 0" opacity="1" src="#tv_background">
+          
+        <a-plane 
+          id="vidplaybox" src="#play" scale="0.122 0.678 0.122" position="-0.350 0 .01" shader="flat" transparent="true" videoplayer >
+        </a-plane> 
+
+        <a-plane
+          id="vidpausebox" src="#pause" scale="0.122 0.678 0.122" position="0.350 0 .01" shader="flat" transparent="true" videopauser >
+        </a-plane>
+        
+      </a-plane>
+  </a-entity> <!-- Close Video on wall -->
+
+	</a-scene>
+	
+  <script src="script.js">
+	</script>
+
+</body>
+
+</html>
